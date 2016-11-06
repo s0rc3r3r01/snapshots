@@ -1,6 +1,6 @@
 # snapshots
 
-This Repository is made of different projects that were developed at different times with various objectives and scopes.
+This Repository is made of different projects that were developed in different times with various objectives and scopes.
 
 # whackamole 
 Project to test system concurrency and hard restrictions (Using Java, LTS, Swing Library)
