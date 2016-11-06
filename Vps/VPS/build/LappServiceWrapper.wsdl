@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="LappServiceWrapper" targetNamespace="http://enterprise.netbeans.org/bpel/LappServiceWrapper" xmlns:tns="http://enterprise.netbeans.org/bpel/LappServiceWrapper" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:ns="http://inm381/lapps">
+    <import location="LappService.wsdl" namespace="http://inm381/lapps"/>
+    <plnk:partnerLinkType name="LappServiceLinkType">
+        <plnk:role name="LappServiceRole" portType="ns:LappServicePortType"/>
+    </plnk:partnerLinkType>
+</definitions>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://schemas.xmlsoap.org/soap/envelope/ http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Body>
+    <m:SearchVehicleExposedResponse xmlns:m="http://j2ee.netbeans.org/wsdl/VPS/src/VPS">
+      <Results xmlns:ax225="http://CommonLibrary/xsd" xmlns:msgns="http://inm381/vsers" xmlns:ns="http://inm381/vsers/xsd" type="CommonLibrary.Results">
+        <ax225:resultlist type="CommonLibrary.Vehicle">
+          <ax225:maker>FIAT</ax225:maker>
+          <ax225:milage>16734</ax225:milage>
+          <ax225:model>Punto</ax225:model>
+          <ax225:price>3552</ax225:price>
+          <ax225:yearofreg>2016</ax225:yearofreg>
+        </ax225:resultlist>
+        <ax225:resultlist type="CommonLibrary.Vehicle">
+          <ax225:maker>FIAT</ax225:maker>
+          <ax225:milage>14169</ax225:milage>
+          <ax225:model>Punto</ax225:model>
+          <ax225:price>3837</ax225:price>
+          <ax225:yearofreg>2014</ax225:yearofreg>
+        </ax225:resultlist>
+        <ax225:resultlist type="CommonLibrary.Vehicle">
+          <ax225:maker>FIAT</ax225:maker>
+          <ax225:milage>14997</ax225:milage>
+          <ax225:model>Punto</ax225:model>
+          <ax225:price>4150</ax225:price>
+          <ax225:yearofreg>2013</ax225:yearofreg>
+        </ax225:resultlist>
+      </Results>
+    </m:SearchVehicleExposedResponse>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

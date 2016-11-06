@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jbi xmlns="http://java.sun.com/xml/ns/jbi" xmlns:ns1="http://enterprise.netbeans.org/bpel/VPS/VPS" xmlns:ns2="http://inm381/lbros" xmlns:ns3="http://www.webservicex.net" xmlns:ns4="http://inm381/vsers" xmlns:ns5="http://inm381/voms" xmlns:ns6="http://inm381/vstos" xmlns:ns7="http://j2ee.netbeans.org/wsdl/VPS/src/VPS" xmlns:ns8="http://inm381/lapps" version="1.0">
+    <services binding-component="true">
+        <provides endpoint-name="LbroServiceHttpSoap11Endpoint" interface-name="ns2:LbroServicePortType" service-name="ns2:LbroService"/>
+        <provides endpoint-name="CCCheckerHttpGet" interface-name="ns3:CCCheckerHttpGet" service-name="ns3:CCChecker"/>
+        <provides endpoint-name="VserServiceHttpSoap11Endpoint" interface-name="ns4:VserServicePortType" service-name="ns4:VserService"/>
+        <provides endpoint-name="VomServiceHttpSoap11Endpoint" interface-name="ns5:VomServicePortType" service-name="ns5:VomService"/>
+        <provides endpoint-name="VstoServiceHttpSoap11Endpoint" interface-name="ns6:VstoServicePortType" service-name="ns6:VstoService"/>
+        <provides endpoint-name="LappServiceHttpSoap11Endpoint" interface-name="ns8:LappServicePortType" service-name="ns8:LappService"/>
+        <consumes endpoint-name="VPSPort" interface-name="ns7:VPSPortType" service-name="ns7:VPSService"/>
+    </services>
+</jbi>

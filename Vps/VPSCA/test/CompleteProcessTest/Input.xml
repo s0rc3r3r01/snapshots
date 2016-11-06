@@ -1,0 +1,16 @@
+<soapenv:Envelope xsi:schemaLocation="http://schemas.xmlsoap.org/soap/envelope/ http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:vps="http://j2ee.netbeans.org/wsdl/VPS/src/VPS">
+  <soapenv:Body>
+    <vps:VPSOperation>
+      <user>PIPPO</user>
+      <minprice>3000</minprice>
+      <maxprice>4000</maxprice>
+      <milage>40000</milage>
+      <year>1980</year>
+      <maker>PIPPO</maker>
+      <model>PIPPO</model>
+      <cardtype>VISA</cardtype>
+      <cardnumber>5398320025874596</cardnumber>
+      <offer>10000</offer>
+    </vps:VPSOperation>
+  </soapenv:Body>
+</soapenv:Envelope>

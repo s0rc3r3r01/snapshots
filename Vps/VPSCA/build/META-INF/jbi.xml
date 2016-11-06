@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jbi xmlns="http://java.sun.com/xml/ns/jbi" xmlns:ns1="http://enterprise.netbeans.org/bpel/VPS/VPS" xmlns:ns2="http://inm381/lbros" xmlns:ns3="http://www.webservicex.net" xmlns:ns4="http://inm381/vsers" xmlns:ns5="http://inm381/voms" xmlns:ns6="http://inm381/vstos" xmlns:ns7="http://j2ee.netbeans.org/wsdl/VPS/src/VPS" xmlns:ns8="http://inm381/lapps" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/jbi ./jbi.xsd">
+    <service-assembly>
+        <identification>
+            <name>VPSCA</name>
+            <description>Represents the Service Assembly of VPSCA</description>
+        </identification>
+        <service-unit>
+            <identification>
+                <name>VPSCA-VPS</name>
+                <description>Represents this Service Unit</description>
+            </identification>
+            <target>
+                <artifacts-zip>VPS.jar</artifacts-zip>
+                <component-name>sun-bpel-engine</component-name>
+            </target>
+        </service-unit>
+        <service-unit>
+            <identification>
+                <name>VPSCA-sun-http-binding</name>
+                <description>Represents this Service Unit</description>
+            </identification>
+            <target>
+                <artifacts-zip>sun-http-binding.jar</artifacts-zip>
+                <component-name>sun-http-binding</component-name>
+            </target>
+        </service-unit>
+        <connections>
+            <connection>
+                <consumer endpoint-name="LbroServiceRole_partnerRole" service-name="ns1:LBROS_PL"/>
+                <provider endpoint-name="LbroServiceHttpSoap11Endpoint" service-name="ns2:LbroService"/>
+            </connection>
+            <connection>
+                <consumer endpoint-name="CCCheckerHttpGetRole_partnerRole" service-name="ns1:CPAY_PL"/>
+                <provider endpoint-name="CCCheckerHttpGet" service-name="ns3:CCChecker"/>
+            </connection>
+            <connection>
+                <consumer endpoint-name="VserServiceRole_partnerRole" service-name="ns1:VSER_PL"/>
+                <provider endpoint-name="VserServiceHttpSoap11Endpoint" service-name="ns4:VserService"/>
+            </connection>
+            <connection>
+                <consumer endpoint-name="VomServiceRole_partnerRole" service-name="ns1:VOMS_PL"/>
+                <provider endpoint-name="VomServiceHttpSoap11Endpoint" service-name="ns5:VomService"/>
+            </connection>
+            <connection>
+                <consumer endpoint-name="VstoServiceRole_partnerRole" service-name="ns1:VSTOS_PL"/>
+                <provider endpoint-name="VstoServiceHttpSoap11Endpoint" service-name="ns6:VstoService"/>
+            </connection>
+            <connection>
+                <consumer endpoint-name="VPSPort" service-name="ns7:VPSService"/>
+                <provider endpoint-name="VPSPortTypeRole_myRole" service-name="ns1:VPS_PL"/>
+            </connection>
+            <connection>
+                <consumer endpoint-name="LappServiceRole_partnerRole" service-name="ns1:LAPPS_PL"/>
+                <provider endpoint-name="LappServiceHttpSoap11Endpoint" service-name="ns8:LappService"/>
+            </connection>
+        </connections>
+    </service-assembly>
+</jbi>

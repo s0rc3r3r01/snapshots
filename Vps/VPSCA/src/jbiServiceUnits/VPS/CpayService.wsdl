@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.webservicex.net" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://www.webservicex.net" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.webservicex.net">
+      <s:element name="ValidateCardNumber">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cardType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cardNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateCardNumberResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidateCardNumberResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ValidateCardNumberHttpGetIn">
+    <wsdl:part name="cardType" type="s:string" />
+    <wsdl:part name="cardNumber" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ValidateCardNumberHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="CCCheckerHttpGet">
+    <wsdl:operation name="ValidateCardNumber">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Please enter card type as  VISA or MASTERCARD or DINERS or AMEX</wsdl:documentation>
+      <wsdl:input message="tns:ValidateCardNumberHttpGetIn" />
+      <wsdl:output message="tns:ValidateCardNumberHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CCCheckerHttpGet" type="tns:CCCheckerHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ValidateCardNumber">
+      <http:operation location="/ValidateCardNumber" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CCChecker">
+    <wsdl:port name="CCCheckerHttpGet" binding="tns:CCCheckerHttpGet">
+      <http:address location="http://www.webservicex.net/CreditCard.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

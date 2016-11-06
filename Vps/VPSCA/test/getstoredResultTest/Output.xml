@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://schemas.xmlsoap.org/soap/envelope/ http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Body>
+    <m:GetStoredResultsExposedResponse xmlns:m="http://j2ee.netbeans.org/wsdl/VPS/src/VPS">
+      <IsResultsStored xmlns:ax227="http://CommonLibrary/xsd" xmlns:msgns="http://inm381/vstos" xmlns:ns="http://inm381/vstos/xsd" type="CommonLibrary.Results">
+        <ax227:resultlist type="CommonLibrary.Vehicle">
+          <ax227:maker>FIAT</ax227:maker>
+          <ax227:milage>10000</ax227:milage>
+          <ax227:model>Punto</ax227:model>
+          <ax227:price>20000</ax227:price>
+          <ax227:yearofreg>2010</ax227:yearofreg>
+        </ax227:resultlist>
+      </IsResultsStored>
+    </m:GetStoredResultsExposedResponse>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

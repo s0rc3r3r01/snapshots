@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:axis2="http://inm381/vsers" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://inm381/vsers/xsd" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ax219="http://CommonLibrary/xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://inm381/vsers">
+    <wsdl:documentation>VserService</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://CommonLibrary/xsd">
+            <xs:complexType name="Results">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="resultlist" nillable="true" type="ax219:Vehicle"/>
+                </xs:sequence>
+            </xs:complexType>
+<xs:complexType name="Vehicle">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="maker" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="milage" type="xs:long"/>
+                    <xs:element minOccurs="0" name="model" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="price" type="xs:int"/>
+                    <xs:element minOccurs="0" name="yearofreg" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:ax220="http://CommonLibrary/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://inm381/vsers/xsd">
+            <xs:import namespace="http://CommonLibrary/xsd"/>
+            <xs:element name="searchVehicle">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="p1" type="xs:int"/>
+                        <xs:element minOccurs="0" name="p2" type="xs:int"/>
+                        <xs:element minOccurs="0" name="mileage" type="xs:int"/>
+                        <xs:element minOccurs="0" name="maker" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="model" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="year" type="xs:int"/>
+                        <xs:element minOccurs="0" name="user" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="searchVehicleResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax219:Results"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="searchVehicleRequest">
+        <wsdl:part name="parameters" element="ns:searchVehicle"/>
+    </wsdl:message>
+    <wsdl:message name="searchVehicleResponse">
+        <wsdl:part name="parameters" element="ns:searchVehicleResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="VserServicePortType">
+        <wsdl:operation name="searchVehicle">
+            <wsdl:input message="axis2:searchVehicleRequest" wsaw:Action="urn:searchVehicle"/>
+            <wsdl:output message="axis2:searchVehicleResponse" wsaw:Action="urn:searchVehicleResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="VserServiceSoap11Binding" type="axis2:VserServicePortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="searchVehicle">
+            <soap:operation soapAction="urn:searchVehicle" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal" namespace="http://inm381/vsers"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" namespace="http://inm381/vsers"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="VserService">
+        <wsdl:port name="VserServiceHttpSoap11Endpoint" binding="axis2:VserServiceSoap11Binding">
+            <soap:address location="http://localhost:8888/axis2/services/VserService.VserServiceHttpSoap11Endpoint/"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

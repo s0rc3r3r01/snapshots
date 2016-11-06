@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<casa xmlns="http://java.sun.com/xml/ns/casa" xmlns:ns1="http://inm381/lbros" xmlns:ns2="http://inm381/vsers" xmlns:ns3="http://inm381/voms" xmlns:ns4="http://inm381/vstos" xmlns:ns5="http://inm381/lapps" xmlns:ns6="http://j2ee.netbeans.org/wsdl/VPS/src/VPS" xmlns:ns7="http://www.webservicex.net" xmlns:ns8="http://enterprise.netbeans.org/bpel/VPS/VPS" xmlns:xlink="http://www.w3.org/2000/xlink">
+    <endpoints>
+        <endpoint endpoint-name="LbroServiceHttpSoap11Endpoint" interface-name="ns1:LbroServicePortType" name="endpoint1" service-name="ns1:LbroService"/>
+        <endpoint endpoint-name="VserServiceHttpSoap11Endpoint" interface-name="ns2:VserServicePortType" name="endpoint2" service-name="ns2:VserService"/>
+        <endpoint endpoint-name="VomServiceHttpSoap11Endpoint" interface-name="ns3:VomServicePortType" name="endpoint3" service-name="ns3:VomService"/>
+        <endpoint endpoint-name="VstoServiceHttpSoap11Endpoint" interface-name="ns4:VstoServicePortType" name="endpoint4" service-name="ns4:VstoService"/>
+        <endpoint endpoint-name="LappServiceHttpSoap11Endpoint" interface-name="ns5:LappServicePortType" name="endpoint5" service-name="ns5:LappService"/>
+        <endpoint endpoint-name="VPSPort" interface-name="ns6:VPSPortType" name="endpoint6" service-name="ns6:VPSService"/>
+        <endpoint endpoint-name="CCCheckerHttpGet" interface-name="ns7:CCCheckerHttpGet" name="endpoint7" service-name="ns7:CCChecker"/>
+        <endpoint display-name="VPS_PL" endpoint-name="VPSPortTypeRole_myRole" file-path="VPS.bpel" interface-name="ns6:VPSPortType" name="endpoint8" process-name="VPS" service-name="ns8:VPS_PL"/>
+        <endpoint display-name="VSER_PL" endpoint-name="VserServiceRole_partnerRole" file-path="VPS.bpel" interface-name="ns2:VserServicePortType" name="endpoint9" process-name="VPS" service-name="ns8:VSER_PL"/>
+        <endpoint display-name="CPAY_PL" endpoint-name="CCCheckerHttpGetRole_partnerRole" file-path="VPS.bpel" interface-name="ns7:CCCheckerHttpGet" name="endpoint10" process-name="VPS" service-name="ns8:CPAY_PL"/>
+        <endpoint display-name="VSTOS_PL" endpoint-name="VstoServiceRole_partnerRole" file-path="VPS.bpel" interface-name="ns4:VstoServicePortType" name="endpoint11" process-name="VPS" service-name="ns8:VSTOS_PL"/>
+        <endpoint display-name="VOMS_PL" endpoint-name="VomServiceRole_partnerRole" file-path="VPS.bpel" interface-name="ns3:VomServicePortType" name="endpoint12" process-name="VPS" service-name="ns8:VOMS_PL"/>
+        <endpoint display-name="LBROS_PL" endpoint-name="LbroServiceRole_partnerRole" file-path="VPS.bpel" interface-name="ns1:LbroServicePortType" name="endpoint13" process-name="VPS" service-name="ns8:LBROS_PL"/>
+        <endpoint display-name="LAPPS_PL" endpoint-name="LappServiceRole_partnerRole" file-path="VPS.bpel" interface-name="ns5:LappServicePortType" name="endpoint14" process-name="VPS" service-name="ns8:LAPPS_PL"/>
+    </endpoints>
+    <service-units>
+        <service-engine-service-unit artifacts-zip="VPS.jar" component-name="sun-bpel-engine" defined="true" description="Represents this Service Unit" internal="true" name="VPSCA-VPS" unit-name="VPS" unknown="false" x="179" y="99">
+            <provides endpoint="endpoint8"/>
+            <consumes endpoint="endpoint9"/>
+            <consumes endpoint="endpoint10"/>
+            <consumes endpoint="endpoint11"/>
+            <consumes endpoint="endpoint12"/>
+            <consumes endpoint="endpoint13"/>
+            <consumes endpoint="endpoint14"/>
+        </service-engine-service-unit>
+        <binding-component-service-unit artifacts-zip="sun-http-binding.jar" component-name="sun-http-binding" description="Represents this Service Unit" name="VPSCA-sun-http-binding" unit-name="sun-http-binding">
+            <ports>
+                <port x="67" y="118">
+                    <link xlink:href="../jbiServiceUnits/VPS/CpayService.wsdl#xpointer(/definitions/service[@name='CCChecker']/port[@name='CCCheckerHttpGet'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint7"/>
+                    <provides endpoint="endpoint7"/>
+                </port>
+                <port x="67" y="39">
+                    <link xlink:href="../jbiServiceUnits/VPS/LappService.wsdl#xpointer(/definitions/service[@name='LappService']/port[@name='LappServiceHttpSoap11Endpoint'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint5"/>
+                    <provides endpoint="endpoint5"/>
+                </port>
+                <port x="67" y="513">
+                    <link xlink:href="../jbiServiceUnits/VPS/LbroService.wsdl#xpointer(/definitions/service[@name='LbroService']/port[@name='LbroServiceHttpSoap11Endpoint'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint1"/>
+                    <provides endpoint="endpoint1"/>
+                </port>
+                <port x="67" y="434">
+                    <link xlink:href="../jbiServiceUnits/VPS/VomService.wsdl#xpointer(/definitions/service[@name='VomService']/port[@name='VomServiceHttpSoap11Endpoint'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint3"/>
+                    <provides endpoint="endpoint3"/>
+                </port>
+                <port x="67" y="355">
+                    <link xlink:href="../jbiServiceUnits/VPS/VPS.wsdl#xpointer(/definitions/service[@name='VPSService']/port[@name='VPSPort'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint6"/>
+                    <provides endpoint="endpoint6"/>
+                </port>
+                <port x="67" y="276">
+                    <link xlink:href="../jbiServiceUnits/VPS/VserService.wsdl#xpointer(/definitions/service[@name='VserService']/port[@name='VserServiceHttpSoap11Endpoint'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint2"/>
+                    <provides endpoint="endpoint2"/>
+                </port>
+                <port x="67" y="197">
+                    <link xlink:href="../jbiServiceUnits/VPS/VstoService.wsdl#xpointer(/definitions/service[@name='VstoService']/port[@name='VstoServiceHttpSoap11Endpoint'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint4"/>
+                    <provides endpoint="endpoint4"/>
+                </port>
+            </ports>
+        </binding-component-service-unit>
+    </service-units>
+    <connections>
+        <connection consumer="endpoint13" provider="endpoint1" state="unchanged"/>
+        <connection consumer="endpoint10" provider="endpoint7" state="unchanged"/>
+        <connection consumer="endpoint9" provider="endpoint2" state="unchanged"/>
+        <connection consumer="endpoint12" provider="endpoint3" state="unchanged"/>
+        <connection consumer="endpoint11" provider="endpoint4" state="unchanged"/>
+        <connection consumer="endpoint6" provider="endpoint8" state="new"/>
+        <connection consumer="endpoint14" provider="endpoint5" state="unchanged"/>
+    </connections>
+    <porttypes>
+        <link xlink:href="../jbiServiceUnits/VPS/CpayService.wsdl#xpointer(/definitions/portType[@name='CCCheckerHttpGet'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/VPS/LappService.wsdl#xpointer(/definitions/portType[@name='LappServicePortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/VPS/LbroService.wsdl#xpointer(/definitions/portType[@name='LbroServicePortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/VPS/VomService.wsdl#xpointer(/definitions/portType[@name='VomServicePortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/VPS/VPS.wsdl#xpointer(/definitions/portType[@name='VPSPortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/VPS/VserService.wsdl#xpointer(/definitions/portType[@name='VserServicePortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/VPS/VstoService.wsdl#xpointer(/definitions/portType[@name='VstoServicePortType'])" xlink:type="simple"/>
+    </porttypes>
+    <bindings>
+        <link xlink:href="../jbiServiceUnits/VPS/CpayService.wsdl#xpointer(/definitions/binding[@name='CCCheckerHttpGet'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/VPS/LappService.wsdl#xpointer(/definitions/binding[@name='LappServiceSoap11Binding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/VPS/LbroService.wsdl#xpointer(/definitions/binding[@name='LbroServiceSoap11Binding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/VPS/VomService.wsdl#xpointer(/definitions/binding[@name='VomServiceSoap11Binding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/VPS/VPS.wsdl#xpointer(/definitions/binding[@name='VPSBinding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/VPS/VserService.wsdl#xpointer(/definitions/binding[@name='VserServiceSoap11Binding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/VPS/VstoService.wsdl#xpointer(/definitions/binding[@name='VstoServiceSoap11Binding'])" xlink:type="simple"/>
+    </bindings>
+    <services>
+        <link xlink:href="../jbiServiceUnits/VPS/CpayService.wsdl#xpointer(/definitions/service[@name='CCChecker'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/VPS/LappService.wsdl#xpointer(/definitions/service[@name='LappService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/VPS/LbroService.wsdl#xpointer(/definitions/service[@name='LbroService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/VPS/VomService.wsdl#xpointer(/definitions/service[@name='VomService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/VPS/VPS.wsdl#xpointer(/definitions/service[@name='VPSService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/VPS/VserService.wsdl#xpointer(/definitions/service[@name='VserService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/VPS/VstoService.wsdl#xpointer(/definitions/service[@name='VstoService'])" xlink:type="simple"/>
+    </services>
+    <regions>
+        <region name="WSDL Endpoints" width="150"/>
+        <region name="JBI Modules" width="500"/>
+        <region name="External Modules" width="200"/>
+    </regions>
+</casa>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://schemas.xmlsoap.org/soap/envelope/ http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Body>
+    <m:GetStoredLoanResultsExposedResponse xmlns:m="http://j2ee.netbeans.org/wsdl/VPS/src/VPS">
+      <Loans xmlns:ax215="http://CommonLibrary/xsd" xmlns:msgns="http://inm381/lapps" xmlns:ns="http://inm381/lapps/xsd" type="CommonLibrary.LoanResults"/>
+    </m:GetStoredLoanResultsExposedResponse>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

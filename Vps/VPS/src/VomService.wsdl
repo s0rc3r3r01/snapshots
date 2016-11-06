@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:axis2="http://inm381/voms" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://inm381/voms/xsd" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:ax223="http://CommonLibrary/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://inm381/voms">
+    <wsdl:documentation>VomService</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://CommonLibrary/xsd">
+            <xs:complexType name="Vehicle">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="maker" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="milage" type="xs:long"/>
+                    <xs:element minOccurs="0" name="model" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="price" type="xs:int"/>
+                    <xs:element minOccurs="0" name="yearofreg" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:ax224="http://CommonLibrary/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://inm381/voms/xsd">
+            <xs:import namespace="http://CommonLibrary/xsd"/>
+            <xs:element name="submitOffer">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="v" nillable="true" type="ax224:Vehicle"/>
+                        <xs:element minOccurs="0" name="user" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="offer" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="submitOfferResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="submitOfferRequest">
+        <wsdl:part name="parameters" element="ns:submitOffer"/>
+    </wsdl:message>
+    <wsdl:message name="submitOfferResponse">
+        <wsdl:part name="parameters" element="ns:submitOfferResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="VomServicePortType">
+        <wsdl:operation name="submitOffer">
+            <wsdl:input message="axis2:submitOfferRequest" wsaw:Action="urn:submitOffer"/>
+            <wsdl:output message="axis2:submitOfferResponse" wsaw:Action="urn:submitOfferResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="VomServiceSoap11Binding" type="axis2:VomServicePortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="submitOffer">
+            <soap:operation soapAction="urn:submitOffer" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal" namespace="http://inm381/voms"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" namespace="http://inm381/voms"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="VomService">
+        <wsdl:port name="VomServiceHttpSoap11Endpoint" binding="axis2:VomServiceSoap11Binding">
+            <soap:address location="http://localhost:8888/axis2/services/VomService.VomServiceHttpSoap11Endpoint/"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

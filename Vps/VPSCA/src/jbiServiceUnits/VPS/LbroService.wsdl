@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:axis2="http://inm381/lbros" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://inm381/lbros/xsd" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:ax217="http://CommonLibrary/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://inm381/lbros">
+    <wsdl:documentation>LbroService</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://CommonLibrary/xsd">
+            <xs:complexType name="Vehicle">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="maker" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="milage" type="xs:long"/>
+                    <xs:element minOccurs="0" name="model" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="price" type="xs:int"/>
+                    <xs:element minOccurs="0" name="yearofreg" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="LoanResults">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="storedloans" nillable="true" type="ax217:Loan"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Loan">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="bank" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="monthlyfare" type="xs:int"/>
+                    <xs:element minOccurs="0" name="months" type="xs:int"/>
+                    <xs:element minOccurs="0" name="vehicle" nillable="true" type="ax217:Vehicle"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:ax218="http://CommonLibrary/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://inm381/lbros/xsd">
+            <xs:import namespace="http://CommonLibrary/xsd"/>
+            <xs:element name="getLoanSearch">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="vehicle" nillable="true" type="ax218:Vehicle"/>
+                        <xs:element minOccurs="0" name="user" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="age" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getLoanSearchResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax218:LoanResults"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="getLoanSearchRequest">
+        <wsdl:part name="parameters" element="ns:getLoanSearch"/>
+    </wsdl:message>
+    <wsdl:message name="getLoanSearchResponse">
+        <wsdl:part name="parameters" element="ns:getLoanSearchResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="LbroServicePortType">
+        <wsdl:operation name="getLoanSearch">
+            <wsdl:input message="axis2:getLoanSearchRequest" wsaw:Action="urn:getLoanSearch"/>
+            <wsdl:output message="axis2:getLoanSearchResponse" wsaw:Action="urn:getLoanSearchResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="LbroServiceSoap11Binding" type="axis2:LbroServicePortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="getLoanSearch">
+            <soap:operation soapAction="urn:getLoanSearch" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal" namespace="http://inm381/lbros"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" namespace="http://inm381/lbros"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="LbroService">
+        <wsdl:port name="LbroServiceHttpSoap11Endpoint" binding="axis2:LbroServiceSoap11Binding">
+            <soap:address location="http://localhost:8888/axis2/services/LbroService.LbroServiceHttpSoap11Endpoint/"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,22 @@
+<soapenv:Envelope xsi:schemaLocation="http://schemas.xmlsoap.org/soap/envelope/ http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:vps="http://j2ee.netbeans.org/wsdl/VPS/src/VPS" xmlns:xsd1="http://CommonLibrary/xsd">
+  <soapenv:Body>
+    <vps:SearchVehicleExposed>
+      <SearchVehicle>
+        <!--Optional:-->
+        <xsd1:p1>3000</xsd1:p1>
+        <!--Optional:-->
+        <xsd1:p2>5000</xsd1:p2>
+        <!--Optional:-->
+        <xsd1:mileage>20000</xsd1:mileage>
+        <!--Optional:-->
+        <xsd1:maker>FIAT</xsd1:maker>
+        <!--Optional:-->
+        <xsd1:model>Punto</xsd1:model>
+        <!--Optional:-->
+        <xsd1:year>2010</xsd1:year>
+        <!--Optional:-->
+        <xsd1:user>John Doe</xsd1:user>
+      </SearchVehicle>
+    </vps:SearchVehicleExposed>
+  </soapenv:Body>
+</soapenv:Envelope>

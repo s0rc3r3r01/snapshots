@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="VstoServiceWrapper" targetNamespace="http://enterprise.netbeans.org/bpel/VstoServiceWrapper" xmlns:tns="http://enterprise.netbeans.org/bpel/VstoServiceWrapper" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:ns="http://inm381/vstos">
+    <import location="VstoService.wsdl" namespace="http://inm381/vstos"/>
+    <plnk:partnerLinkType name="VstoServiceLinkType">
+        <plnk:role name="VstoServiceRole" portType="ns:VstoServicePortType"/>
+    </plnk:partnerLinkType>
+</definitions>

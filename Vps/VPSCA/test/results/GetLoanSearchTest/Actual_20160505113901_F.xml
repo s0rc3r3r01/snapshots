@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://schemas.xmlsoap.org/soap/envelope/ http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Body>
+    <m:GetLoanSearchExposedResponse xmlns:m="http://j2ee.netbeans.org/wsdl/VPS/src/VPS">
+      <loanresults xmlns:ax217="http://CommonLibrary/xsd" xmlns:msgns="http://inm381/lbros" xmlns:ns="http://inm381/lbros/xsd" type="CommonLibrary.LoanResults">
+        <ax217:storedloans type="CommonLibrary.Loan">
+          <ax217:bank>Barclays</ax217:bank>
+          <ax217:monthlyfare>200</ax217:monthlyfare>
+          <ax217:months>15</ax217:months>
+          <ax217:vehicle type="CommonLibrary.Vehicle">
+            <ax217:maker>FIAT</ax217:maker>
+            <ax217:milage>20000</ax217:milage>
+            <ax217:model>Punto</ax217:model>
+            <ax217:price>3000</ax217:price>
+            <ax217:yearofreg>2010</ax217:yearofreg>
+          </ax217:vehicle>
+        </ax217:storedloans>
+        <ax217:storedloans type="CommonLibrary.Loan">
+          <ax217:bank>HSBC</ax217:bank>
+          <ax217:monthlyfare>130</ax217:monthlyfare>
+          <ax217:months>23</ax217:months>
+          <ax217:vehicle type="CommonLibrary.Vehicle">
+            <ax217:maker>FIAT</ax217:maker>
+            <ax217:milage>20000</ax217:milage>
+            <ax217:model>Punto</ax217:model>
+            <ax217:price>3000</ax217:price>
+            <ax217:yearofreg>2010</ax217:yearofreg>
+          </ax217:vehicle>
+        </ax217:storedloans>
+        <ax217:storedloans type="CommonLibrary.Loan">
+          <ax217:bank>Santander</ax217:bank>
+          <ax217:monthlyfare>78</ax217:monthlyfare>
+          <ax217:months>38</ax217:months>
+          <ax217:vehicle type="CommonLibrary.Vehicle">
+            <ax217:maker>FIAT</ax217:maker>
+            <ax217:milage>20000</ax217:milage>
+            <ax217:model>Punto</ax217:model>
+            <ax217:price>3000</ax217:price>
+            <ax217:yearofreg>2010</ax217:yearofreg>
+          </ax217:vehicle>
+        </ax217:storedloans>
+        <ax217:storedloans type="CommonLibrary.Loan">
+          <ax217:bank>LLoyds</ax217:bank>
+          <ax217:monthlyfare>166</ax217:monthlyfare>
+          <ax217:months>18</ax217:months>
+          <ax217:vehicle type="CommonLibrary.Vehicle">
+            <ax217:maker>FIAT</ax217:maker>
+            <ax217:milage>20000</ax217:milage>
+            <ax217:model>Punto</ax217:model>
+            <ax217:price>3000</ax217:price>
+            <ax217:yearofreg>2010</ax217:yearofreg>
+          </ax217:vehicle>
+        </ax217:storedloans>
+      </loanresults>
+    </m:GetLoanSearchExposedResponse>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

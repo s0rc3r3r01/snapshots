@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="VserServiceWrapper" targetNamespace="http://enterprise.netbeans.org/bpel/VserServiceWrapper" xmlns:tns="http://enterprise.netbeans.org/bpel/VserServiceWrapper" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:ns="http://inm381/vsers">
+    <import location="VserService.wsdl" namespace="http://inm381/vsers"/>
+    <plnk:partnerLinkType name="VserServiceLinkType">
+        <plnk:role name="VserServiceRole" portType="ns:VserServicePortType"/>
+    </plnk:partnerLinkType>
+</definitions>

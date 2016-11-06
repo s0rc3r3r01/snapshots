@@ -1,0 +1,4 @@
+Bundle-Name: VPSCA
+Bundle-SymbolicName: VPSCA
+Bundle-ManifestVersion: 2
+Bundle-Version: 1.0.0

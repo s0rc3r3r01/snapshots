@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://schemas.xmlsoap.org/soap/envelope/ http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Body>
+    <m:SubmitOfferExposedResponse xmlns:m="http://j2ee.netbeans.org/wsdl/VPS/src/VPS">
+      <isAccepted xmlns:msgns="http://inm381/voms" xmlns:ns="http://inm381/voms/xsd">true</isAccepted>
+    </m:SubmitOfferExposedResponse>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<process
+    name="VPS"
+    targetNamespace="http://enterprise.netbeans.org/bpel/VPS/VPS"
+    xmlns:tns="http://enterprise.netbeans.org/bpel/VPS/VPS"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+    xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
+    xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2"
+    xmlns:sxat="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Attachment"
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:ns0="http://inm381/vsers/xsd" xmlns:ns1="http://inm381/vstos/xsd" xmlns:ns2="http://CommonLibrary/xsd" xmlns:ns3="http://inm381/lbros/xsd" xmlns:ns4="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:ns5="http://inm381/lapps/xsd" xmlns:ns6="http://inm381/voms/xsd" xmlns:ns7="http://www.webservicex.net" xmlns:axis2="http://inm381/vsers">
+    <import namespace="http://j2ee.netbeans.org/wsdl/VPS/src/VPS" location="VPS.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://enterprise.netbeans.org/bpel/VserServiceWrapper" location="VserServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://inm381/vsers" location="VserService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://enterprise.netbeans.org/bpel/VstoServiceWrapper" location="VstoServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://inm381/vstos" location="VstoService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://inm381/lbros" location="LbroService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://inm381/lapps" location="LappService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://enterprise.netbeans.org/bpel/LbroServiceWrapper" location="LbroServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://enterprise.netbeans.org/bpel/VomServiceWrapper" location="VomServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://inm381/voms" location="VomService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://enterprise.netbeans.org/bpel/CpayServiceWrapper" location="CpayServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://www.webservicex.net" location="CpayService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://enterprise.netbeans.org/bpel/LappServiceWrapper" location="LappServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <partnerLinks>
+        <partnerLink name="VPS_PL" xmlns:tns="http://j2ee.netbeans.org/wsdl/VPS/src/VPS" partnerLinkType="tns:VPS" myRole="VPSPortTypeRole"/>
+        <partnerLink name="VSER_PL" xmlns:tns="http://enterprise.netbeans.org/bpel/VserServiceWrapper" partnerLinkType="tns:VserServiceLinkType" partnerRole="VserServiceRole"/>
+        <partnerLink name="CPAY_PL" xmlns:tns="http://enterprise.netbeans.org/bpel/CpayServiceWrapper" partnerLinkType="tns:CCCheckerHttpGetLinkType" partnerRole="CCCheckerHttpGetRole"/>
+        <partnerLink name="VSTOS_PL" xmlns:tns="http://enterprise.netbeans.org/bpel/VstoServiceWrapper" partnerLinkType="tns:VstoServiceLinkType" partnerRole="VstoServiceRole"/>
+        <partnerLink name="VOMS_PL" xmlns:tns="http://enterprise.netbeans.org/bpel/VomServiceWrapper" partnerLinkType="tns:VomServiceLinkType" partnerRole="VomServiceRole"/>
+        <partnerLink name="LBROS_PL" xmlns:tns="http://enterprise.netbeans.org/bpel/LbroServiceWrapper" partnerLinkType="tns:LbroServiceLinkType" partnerRole="LbroServiceRole"/>
+        <partnerLink name="LAPPS_PL" xmlns:tns="http://enterprise.netbeans.org/bpel/LappServiceWrapper" partnerLinkType="tns:LappServiceLinkType" partnerRole="LappServiceRole"/>
+    </partnerLinks>
+    <variables>
+        <variable name="GetLoanSearchExposedOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/VPS/src/VPS" messageType="tns:GetLoanSearchOpearationResponse"/>
+        <variable name="GetLoanSearchExposedIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/VPS/src/VPS" messageType="tns:GetLoanSearchOpearationRequest"/>
+        <variable name="GetLoanSearchOut" xmlns:axis2="http://inm381/lbros" messageType="axis2:getLoanSearchResponse"/>
+        <variable name="GetLoanSearchIn" xmlns:axis2="http://inm381/lbros" messageType="axis2:getLoanSearchRequest"/>
+        <variable name="StoreLoansExposedOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/VPS/src/VPS" messageType="tns:StoreLoansOperationResponse"/>
+        <variable name="StoreLoansOut" xmlns:axis2="http://inm381/lapps" messageType="axis2:storeLoansResponse"/>
+        <variable name="StoreLoansIn" xmlns:axis2="http://inm381/lapps" messageType="axis2:storeLoansRequest"/>
+        <variable name="StoreLoansExposedIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/VPS/src/VPS" messageType="tns:StoreLoansOperationRequest"/>
+        <variable name="GetStoredLoanResultsExposedOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/VPS/src/VPS" messageType="tns:GetStoredLoanResultsResponse"/>
+        <variable name="GetStoredLoansOut" xmlns:axis2="http://inm381/lapps" messageType="axis2:getStoredLoansResponse"/>
+        <variable name="GetStoredLoansIn" xmlns:axis2="http://inm381/lapps" messageType="axis2:getStoredLoansRequest"/>
+        <variable name="GetStoredResultsExposedOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/VPS/src/VPS" messageType="tns:GetStoredResultsOperationResponse"/>
+        <variable name="GetResultsOut" xmlns:axis2="http://inm381/vstos" messageType="axis2:getResultsResponse"/>
+        <variable name="GetResultsIn" xmlns:axis2="http://inm381/vstos" messageType="axis2:getResultsRequest"/>
+        <variable name="SubmitLoanApplicationOut" xmlns:axis2="http://inm381/lapps" messageType="axis2:submitLoanApplicationResponse"/>
+        <variable name="SubmitLoanApplicationIn" xmlns:axis2="http://inm381/lapps" messageType="axis2:submitLoanApplicationRequest"/>
+        <variable name="ValidateCardNumberOut" messageType="ns7:ValidateCardNumberHttpGetOut"/>
+        <variable name="ValidateCardNumberIn" messageType="ns7:ValidateCardNumberHttpGetIn"/>
+        <variable name="SubmitLoanApplicationExposedOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/VPS/src/VPS" messageType="tns:SubmitLoanApplicationOperationResponse"/>
+        <variable name="SubmitLoanApplicationExposedIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/VPS/src/VPS" messageType="tns:SubmitLoanApplicationOperationRequest"/>
+        <variable name="GetStoredLoanResultsExposedIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/VPS/src/VPS" messageType="tns:GetStoredLoanResultsRequest"/>
+        <variable name="SubmitOfferOut" xmlns:axis2="http://inm381/voms" messageType="axis2:submitOfferResponse"/>
+        <variable name="SubmitOfferIn" xmlns:axis2="http://inm381/voms" messageType="axis2:submitOfferRequest"/>
+        <variable name="SubmitOfferExposedOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/VPS/src/VPS" messageType="tns:SubmitOfferOperationResponse"/>
+        <variable name="SubmitOfferExposedIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/VPS/src/VPS" messageType="tns:SubmitOfferOperationRequest"/>
+        <variable name="GetStoredResultsExposedIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/VPS/src/VPS" messageType="tns:GetStoredResultsOperationRequest"/>
+        <variable name="StoreResultsExposedIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/VPS/src/VPS" messageType="tns:StoreResultsOperationRequest"/>
+        <variable name="StoreResultsExposedOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/VPS/src/VPS" messageType="tns:StoreResultsOperationResponse"/>
+        <variable name="StoreResultsOut" xmlns:axis2="http://inm381/vstos" messageType="axis2:storeResultsResponse"/>
+        <variable name="StoreResultsIn" xmlns:axis2="http://inm381/vstos" messageType="axis2:storeResultsRequest"/>
+        <variable name="SearchVehicleExposedOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/VPS/src/VPS" messageType="tns:SearchVehicleOperationResponse"/>
+        <variable name="SearchVehicleOut" messageType="axis2:searchVehicleResponse"/>
+        <variable name="SearchVehicleIn" messageType="axis2:searchVehicleRequest"/>
+        <variable name="SearchVehicleExposedIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/VPS/src/VPS" messageType="tns:SearchVehicleOperationRequest"/>
+    </variables>
+    <sequence>
+        <pick name="Pick1" xmlns:tns="http://j2ee.netbeans.org/wsdl/VPS/src/VPS" createInstance="yes">
+            <onMessage partnerLink="VPS_PL" operation="SearchVehicleExposed" xmlns:tns="http://j2ee.netbeans.org/wsdl/VPS/src/VPS" portType="tns:VPSPortType" variable="SearchVehicleExposedIn">
+                    <sequence name="SearchVehicle" xmlns:tns="http://j2ee.netbeans.org/wsdl/VPS/src/VPS">
+                            <assign name="Assign1">
+                                    <copy>
+                                            <from variable="SearchVehicleExposedIn" part="SearchVehicle"/>
+                                                <to variable="SearchVehicleIn" part="parameters"/>
+                                        </copy>
+                                </assign>
+                                <invoke name="Invoke1" partnerLink="VSER_PL" operation="searchVehicle" portType="axis2:VserServicePortType" inputVariable="SearchVehicleIn" outputVariable="SearchVehicleOut"/>
+                                <assign name="Assign2">
+                                    <copy>
+                                            <from>$SearchVehicleOut.parameters/ns0:return</from>
+                                                <to variable="SearchVehicleExposedOut" part="Results"/>
+                                        </copy>
+                                </assign>
+                                <reply name="Reply1" partnerLink="VPS_PL" operation="SearchVehicleExposed" xmlns:tns="http://j2ee.netbeans.org/wsdl/VPS/src/VPS" portType="tns:VPSPortType" variable="SearchVehicleExposedOut"/>
+                        </sequence>
+                </onMessage>
+            <onMessage partnerLink="VPS_PL" operation="StoreResultsExposed" portType="tns:VPSPortType" variable="StoreResultsExposedIn">
+                <sequence name="StoreResults" xmlns:axis2="http://inm381/vstos">
+                    <assign name="Assign3">
+                            <copy>
+                                    <from variable="StoreResultsExposedIn" part="Results"/>
+                                        <to>$StoreResultsIn.parameters/ns1:res</to>
+                                </copy>
+                        <copy>
+                            <from variable="StoreResultsExposedIn" part="user"/>
+                            <to>$StoreResultsIn.parameters/ns1:user</to>
+                        </copy>
+                    </assign>
+                        <invoke name="Invoke2" partnerLink="VSTOS_PL" operation="storeResults" xmlns:axis2="http://inm381/vstos" portType="axis2:VstoServicePortType" inputVariable="StoreResultsIn" outputVariable="StoreResultsOut"/>
+                        <assign name="Assign4">
+                            <copy>
+                                    <from>$StoreResultsOut.parameters/ns1:return</from>
+                                        <to variable="StoreResultsExposedOut" part="isstored"/>
+                                </copy>
+                        </assign>
+                        <reply name="Reply2" partnerLink="VPS_PL" operation="StoreResultsExposed" xmlns:tns="http://j2ee.netbeans.org/wsdl/VPS/src/VPS" portType="tns:VPSPortType" variable="StoreResultsExposedOut"/>
+                </sequence>
+            </onMessage>
+            <onMessage partnerLink="VPS_PL" operation="GetStoredResultsExposed" portType="tns:VPSPortType" variable="GetStoredResultsExposedIn">
+                <sequence name="GetStoredResults" xmlns:axis2="http://inm381/vstos">
+                    <assign name="Assign5">
+                        <copy>
+                            <from variable="GetStoredResultsExposedIn" part="user"/>
+                            <to>$GetResultsIn.parameters/ns1:user</to>
+                        </copy>
+                    </assign>
+                    <invoke name="Invoke3" partnerLink="VSTOS_PL" operation="getResults" xmlns:axis2="http://inm381/vstos" portType="axis2:VstoServicePortType" inputVariable="GetResultsIn" outputVariable="GetResultsOut"/>
+                    <assign name="Assign19">
+                        <copy>
+                            <from>$GetResultsOut.parameters/ns1:return</from>
+                            <to variable="GetStoredResultsExposedOut" part="IsResultsStored"/>
+                        </copy>
+                    </assign>
+                    <reply name="Reply3" partnerLink="VPS_PL" operation="GetStoredResultsExposed" xmlns:tns="http://j2ee.netbeans.org/wsdl/VPS/src/VPS" portType="tns:VPSPortType" variable="GetStoredResultsExposedOut"/>
+                </sequence>
+            </onMessage>
+            <onMessage partnerLink="VPS_PL" operation="SubmitOfferExposed" portType="tns:VPSPortType" variable="SubmitOfferExposedIn">
+                <sequence name="SubmitOffer" xmlns:axis2="http://inm381/voms">
+                        <assign name="Assign7">
+                            <copy>
+                                    <from variable="SubmitOfferExposedIn" part="user"/>
+                                        <to>$SubmitOfferIn.parameters/ns6:user</to>
+                                </copy>
+                                <copy>
+                                    <from variable="SubmitOfferExposedIn" part="offer"/>
+                                        <to>$SubmitOfferIn.parameters/ns6:offer</to>
+                                </copy>
+                                <copy>
+                                    <from variable="SubmitOfferExposedIn" part="Vehicle"/>
+                                        <to>$SubmitOfferIn.parameters/ns6:v</to>
+                                </copy>
+                        </assign>
+                        <invoke name="Invoke4" partnerLink="VOMS_PL" operation="submitOffer" xmlns:axis2="http://inm381/voms" portType="axis2:VomServicePortType" inputVariable="SubmitOfferIn" outputVariable="SubmitOfferOut"/>
+                        <assign name="Assign8">
+                            <copy>
+                                <from>$SubmitOfferOut.parameters/ns6:return</from>
+                                <to variable="SubmitOfferExposedOut" part="isAccepted"/>
+                            </copy>
+                        </assign>
+                        <reply name="Reply4" partnerLink="VPS_PL" operation="SubmitOfferExposed" xmlns:tns="http://j2ee.netbeans.org/wsdl/VPS/src/VPS" portType="tns:VPSPortType" variable="SubmitOfferExposedOut"/>
+                </sequence>
+            </onMessage>
+            <onMessage partnerLink="VPS_PL" operation="GetLoanSearchExposed" portType="tns:VPSPortType" variable="GetLoanSearchExposedIn">
+                <sequence name="GetLoanSearch" xmlns:axis2="http://inm381/lbros">
+                        <assign name="Assign9">
+                            <copy>
+                                <from variable="GetLoanSearchExposedIn" part="user"/>
+                                <to>$GetLoanSearchIn.parameters/ns3:user</to>
+                            </copy>
+                            <copy>
+                                <from variable="GetLoanSearchExposedIn" part="vehicle"/>
+                                <to>$GetLoanSearchIn.parameters/ns3:vehicle</to>
+                            </copy>
+                            <copy>
+                                <from variable="GetLoanSearchExposedIn" part="age"/>
+                                <to>$GetLoanSearchIn.parameters/ns3:age</to>
+                            </copy>
+                        </assign>
+                        <invoke name="Invoke5" partnerLink="LBROS_PL" operation="getLoanSearch" xmlns:axis2="http://inm381/lbros" portType="axis2:LbroServicePortType" inputVariable="GetLoanSearchIn" outputVariable="GetLoanSearchOut"/>
+                        <assign name="Assign10">
+                            <copy>
+                                <from>$GetLoanSearchOut.parameters/ns3:return</from>
+                                <to variable="GetLoanSearchExposedOut" part="loanresults"/>
+                            </copy>
+                        </assign>
+                        <reply name="Reply5" partnerLink="VPS_PL" operation="GetLoanSearchExposed" xmlns:tns="http://j2ee.netbeans.org/wsdl/VPS/src/VPS" portType="tns:VPSPortType" variable="GetLoanSearchExposedOut"/>
+                </sequence>
+            </onMessage>
+            <onMessage partnerLink="VPS_PL" operation="StoreLoansExposed" portType="tns:VPSPortType" variable="StoreLoansExposedIn">
+                <sequence name="StoreLoans" xmlns:axis2="http://inm381/lapps">
+                        <assign name="Assign11">
+                            <copy>
+                                <from variable="StoreLoansExposedIn" part="user"/>
+                                <to>$StoreLoansIn.parameters/ns5:user</to>
+                            </copy>
+                            <copy>
+                                <from>$StoreLoansExposedIn.Loans/ns2:storedloans</from>
+                                <to>$StoreLoansIn.parameters/ns5:std</to>
+                            </copy>
+                        </assign>
+                        <invoke name="Invoke6" partnerLink="LAPPS_PL" operation="storeLoans" xmlns:axis2="http://inm381/lapps" portType="axis2:LappServicePortType" inputVariable="StoreLoansIn" outputVariable="StoreLoansOut"/>
+                        <assign name="Assign12">
+                            <copy>
+                                    <from>$StoreLoansOut.parameters/ns5:return</from>
+                                        <to variable="StoreLoansExposedOut" part="result"/>
+                                </copy>
+                        </assign>
+                        <reply name="Reply9" partnerLink="VPS_PL" operation="StoreLoansExposed" xmlns:tns="http://j2ee.netbeans.org/wsdl/VPS/src/VPS" portType="tns:VPSPortType" variable="StoreLoansExposedOut"/>
+                </sequence>
+            </onMessage>
+            <onMessage partnerLink="VPS_PL" operation="GetStoredLoanResultsExposed" portType="tns:VPSPortType" variable="GetStoredLoanResultsExposedIn">
+                <sequence name="GetStoredLoans" xmlns:axis2="http://inm381/lapps">
+                    <assign name="Assign18">
+                        <copy>
+                            <from variable="GetStoredLoanResultsExposedIn" part="user"/>
+                            <to>$GetStoredLoansIn.parameters/ns5:user</to>
+                        </copy>
+                    </assign>
+                    <invoke name="Invoke7" partnerLink="LAPPS_PL" operation="getStoredLoans" xmlns:axis2="http://inm381/lapps" portType="axis2:LappServicePortType" outputVariable="GetStoredLoansOut" inputVariable="GetStoredLoansIn"/>
+                        <assign name="Assign14">
+                            <copy>
+                                <from>$GetStoredLoansOut.parameters/ns5:return</from>
+                                <to variable="GetStoredLoanResultsExposedOut" part="Loans"/>
+                            </copy>
+                        </assign>
+                        <reply name="Reply7" partnerLink="VPS_PL" operation="GetStoredLoanResultsExposed" xmlns:tns="http://j2ee.netbeans.org/wsdl/VPS/src/VPS" portType="tns:VPSPortType" variable="GetStoredLoanResultsExposedOut"/>
+                </sequence>
+            </onMessage>
+            <onMessage partnerLink="VPS_PL" operation="SubmitLoanApplicationExposed" portType="tns:VPSPortType" variable="SubmitLoanApplicationExposedIn">
+                <sequence name="Sequence3" xmlns:axis2="http://inm381/lapps">
+                        <assign name="Assign15">
+                            <copy>
+                                    <from>$SubmitLoanApplicationExposedIn.CardDetails/ns2:cardType</from>
+                                        <to variable="ValidateCardNumberIn" part="cardType"/>
+                                </copy>
+                                <copy>
+                                    <from>$SubmitLoanApplicationExposedIn.CardDetails/ns2:cardNumber</from>
+                                        <to variable="ValidateCardNumberIn" part="cardNumber"/>
+                                </copy>
+                        </assign>
+                        <invoke name="Invoke8" partnerLink="CPAY_PL" operation="ValidateCardNumber" portType="ns7:CCCheckerHttpGet" inputVariable="ValidateCardNumberIn" outputVariable="ValidateCardNumberOut"/>
+                        <assign name="Assign16">
+                            <copy>
+                                    <from variable="SubmitLoanApplicationExposedIn" part="user"/>
+                                        <to>$SubmitLoanApplicationIn.parameters/ns5:user</to>
+                                </copy>
+                                <copy>
+                                    <from variable="SubmitLoanApplicationExposedIn" part="Loan"/>
+                                        <to>$SubmitLoanApplicationIn.parameters/ns5:loan</to>
+                                </copy>
+                                <copy>
+                                    <from variable="ValidateCardNumberOut" part="Body"/>
+                                        <to>$SubmitLoanApplicationIn.parameters/ns5:verify</to>
+                                </copy>
+                        </assign>
+                        <invoke name="Invoke9" partnerLink="LAPPS_PL" operation="submitLoanApplication" xmlns:axis2="http://inm381/lapps" portType="axis2:LappServicePortType" inputVariable="SubmitLoanApplicationIn" outputVariable="SubmitLoanApplicationOut"/>
+                        <assign name="Assign17">
+                            <copy>
+                                    <from>$SubmitLoanApplicationOut.parameters/ns5:return</from>
+                                        <to variable="SubmitLoanApplicationExposedOut" part="isSubmitted"/>
+                                </copy>
+                        </assign>
+                        <reply name="Reply8" partnerLink="VPS_PL" operation="SubmitLoanApplicationExposed" xmlns:tns="http://j2ee.netbeans.org/wsdl/VPS/src/VPS" portType="tns:VPSPortType" variable="SubmitLoanApplicationExposedOut"/>
+                </sequence>
+            </onMessage>
+        </pick>
+    </sequence>
+</process>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="VPS" targetNamespace="http://j2ee.netbeans.org/wsdl/VPS/src/VPS"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/VPS/src/VPS" xmlns:ns="http://CommonLibrary/xsd" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <types>
+        
+        <xsd:schema targetNamespace="http://j2ee.netbeans.org/wsdl/VPS/src/VPS">
+            <xsd:import namespace="http://CommonLibrary/xsd" schemaLocation="Output.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="SearchVehicleOperationRequest">
+        <part name="SearchVehicle" type="ns:SearchVehicle"/>
+    </message>
+    <message name="SearchVehicleOperationResponse">
+        <part name="Results" type="ns:Results"/>
+    </message>
+    <message name="GetStoredLoanResultsRequest">
+        <part name="user" type="xsd:string"/>
+    </message>
+    <message name="GetStoredLoanResultsResponse">
+        <part name="Loans" type="ns:LoanResults"/>
+    </message>
+    <message name="SubmitLoanApplicationOperationRequest">
+        <part name="user" type="xsd:string"/>
+        <part name="Loan" type="ns:Loan"/>
+        <part name="CardDetails" type="ns:ValidateCardNumber"/>
+    </message>
+    <message name="SubmitLoanApplicationOperationResponse">
+        <part name="isSubmitted" type="xsd:boolean"/>
+    </message>
+    <message name="SubmitOfferOperationRequest">
+        <part name="user" type="xsd:string"/>
+        <part name="offer" type="xsd:int"/>
+        <part name="Vehicle" type="ns:Vehicle"/>
+    </message>
+    <message name="SubmitOfferOperationResponse">
+        <part name="isAccepted" type="xsd:boolean"/>
+    </message>
+    <message name="StoreResultsOperationRequest">
+        <part name="Results" type="ns:Results"/>
+        <part name="user" type="xsd:string"/>
+    </message>
+    <message name="StoreResultsOperationResponse">
+        <part name="isstored" type="xsd:boolean"/>
+    </message>
+    <message name="GetStoredResultsOperationRequest">
+        <part name="user" type="xsd:string"/>
+    </message>
+    <message name="GetStoredResultsOperationResponse">
+        <part name="IsResultsStored" type="ns:Results"/>
+    </message>
+    <message name="StoreLoansOperationRequest">
+        <part name="Loans" type="ns:LoanResults"/>
+        <part name="user" type="xsd:string"/>
+    </message>
+    <message name="StoreLoansOperationResponse">
+        <part name="result" type="xsd:boolean"/>
+    </message>
+    <message name="GetLoanSearchOpearationRequest">
+        <part name="user" type="xsd:string"/>
+        <part name="vehicle" type="ns:Vehicle"/>
+        <part name="age" type="xsd:int"/>
+    </message>
+    <message name="GetLoanSearchOpearationResponse">
+        <part name="loanresults" type="ns:LoanResults"/>
+    </message>
+    <message name="VPSOperationRequest">
+        <part name="user" type="xsd:string"/>
+        <part name="minprice" type="xsd:int"/>
+        <part name="maxprice" type="xsd:int"/>
+        <part name="milage" type="xsd:long"/>
+        <part name="year" type="xsd:int"/>
+        <part name="maker" type="xsd:string"/>
+        <part name="model" type="xsd:string"/>
+        <part name="cardtype" type="xsd:string"/>
+        <part name="cardnumber" type="xsd:string"/>
+        <part name="offer" type="xsd:int"/>
+        <part name="age" type="xsd:int"/>
+    </message>
+    <message name="VPSOperationResponse">
+        <part name="loanaccepted" type="xsd:boolean"/>
+        <part name="offeraccepted" type="xsd:boolean"/>
+    </message>
+    <portType name="VPSPortType">
+        <operation name="SearchVehicleExposed">
+            <input name="SearchVehicleRequestExposed" message="tns:SearchVehicleOperationRequest"/>
+            <output name="SearchVehicleResponseExposed" message="tns:SearchVehicleOperationResponse"/>
+        </operation>
+        <operation name="GetStoredLoanResultsExposed">
+            <input name="GetStoredLoansRequestExposed" message="tns:GetStoredLoanResultsRequest"/>
+            <output name="GetStoredLoansResponseExposed" message="tns:GetStoredLoanResultsResponse"/>
+        </operation>
+        <operation name="SubmitLoanApplicationExposed">
+            <input name="SubmitLoanApplicationRequestExposed" message="tns:SubmitLoanApplicationOperationRequest"/>
+            <output name="SubmitLoanApplicationResponseExposed" message="tns:SubmitLoanApplicationOperationResponse"/>
+        </operation>
+        <operation name="SubmitOfferExposed">
+            <input name="SubmitOfferRequestExposed" message="tns:SubmitOfferOperationRequest"/>
+            <output name="SubmitOfferResponseExposed" message="tns:SubmitOfferOperationResponse"/>
+        </operation>
+        <operation name="StoreResultsExposed">
+            <input name="StoreResultsOperationRequest" message="tns:StoreResultsOperationRequest"/>
+            <output name="StoreResultsOperationResponse" message="tns:StoreResultsOperationResponse"/>
+        </operation>
+        <operation name="GetStoredResultsExposed">
+            <input name="GetStoredResultsExposedRequest" message="tns:GetStoredResultsOperationRequest"/>
+            <output name="GetStoredResultsExposedResponse" message="tns:GetStoredResultsOperationResponse"/>
+        </operation>
+        <operation name="StoreLoansExposed">
+            <input name="StoreLoansOpeartionRequest" message="tns:StoreLoansOperationRequest"/>
+            <output name="StoreLoansOperationResponse" message="tns:StoreLoansOperationResponse"/>
+        </operation>
+        <operation name="GetLoanSearchExposed">
+            <input name="GetLoanSearchRequestExposed" message="tns:GetLoanSearchOpearationRequest"/>
+            <output name="GetLoanSearchResponseExposed" message="tns:GetLoanSearchOpearationResponse"/>
+        </operation>
+        <operation name="VPSOperation">
+            <input name="inputMessage" message="tns:VPSOperationRequest"/>
+            <output name="outputMessage" message="tns:VPSOperationResponse"/>
+        </operation>
+    </portType>
+    <binding name="VPSBinding" type="tns:VPSPortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="SearchVehicleExposed">
+            <soap:operation/>
+            <input name="SearchVehicleRequestExposed">
+                <soap:body use="literal" namespace="http://j2ee.netbeans.org/wsdl/VPS/src/VPS"/>
+            </input>
+            <output name="SearchVehicleResponseExposed">
+                <soap:body use="literal" namespace="http://j2ee.netbeans.org/wsdl/VPS/src/VPS"/>
+            </output>
+        </operation>
+        <operation name="GetStoredResultsExposed">
+            <soap:operation/>
+            <input name="GetStoredResultsExposedRequest">
+                <soap:body use="literal" namespace="http://j2ee.netbeans.org/wsdl/VPS/src/VPS"/>
+            </input>
+            <output name="GetStoredResultsExposedResponse">
+                <soap:body use="literal" namespace="http://j2ee.netbeans.org/wsdl/VPS/src/VPS"/>
+            </output>
+        </operation>
+        <operation name="StoreResultsExposed">
+            <soap:operation/>
+            <input name="StoreResultsOperationRequest">
+                <soap:body use="literal" namespace="http://j2ee.netbeans.org/wsdl/VPS/src/VPS"/>
+            </input>
+            <output name="StoreResultsOperationResponse">
+                <soap:body use="literal" namespace="http://j2ee.netbeans.org/wsdl/VPS/src/VPS"/>
+            </output>
+        </operation>
+        <operation name="SubmitOfferExposed">
+            <soap:operation/>
+            <input name="SubmitOfferRequestExposed">
+                <soap:body use="literal" namespace="http://j2ee.netbeans.org/wsdl/VPS/src/VPS"/>
+            </input>
+            <output name="SubmitOfferResponseExposed">
+                <soap:body use="literal" namespace="http://j2ee.netbeans.org/wsdl/VPS/src/VPS"/>
+            </output>
+        </operation>
+        <operation name="SubmitLoanApplicationExposed">
+            <soap:operation/>
+            <input name="SubmitLoanApplicationRequestExposed">
+                <soap:body use="literal" namespace="http://j2ee.netbeans.org/wsdl/VPS/src/VPS"/>
+            </input>
+            <output name="SubmitLoanApplicationResponseExposed">
+                <soap:body use="literal" namespace="http://j2ee.netbeans.org/wsdl/VPS/src/VPS"/>
+            </output>
+        </operation>
+        <operation name="GetStoredLoanResultsExposed">
+            <soap:operation/>
+            <input name="GetStoredLoansRequestExposed">
+                <soap:body use="literal" namespace="http://j2ee.netbeans.org/wsdl/VPS/src/VPS"/>
+            </input>
+            <output name="GetStoredLoansResponseExposed">
+                <soap:body use="literal" namespace="http://j2ee.netbeans.org/wsdl/VPS/src/VPS"/>
+            </output>
+        </operation>
+        <operation name="StoreLoansExposed">
+            <soap:operation/>
+            <input name="StoreLoansOpeartionRequest">
+                <soap:body use="literal" namespace="http://j2ee.netbeans.org/wsdl/VPS/src/VPS"/>
+            </input>
+            <output name="StoreLoansOperationResponse">
+                <soap:body use="literal" namespace="http://j2ee.netbeans.org/wsdl/VPS/src/VPS"/>
+            </output>
+        </operation>
+        <operation name="GetLoanSearchExposed">
+            <soap:operation/>
+            <input name="GetLoanSearchRequestExposed">
+                <soap:body use="literal" namespace="http://j2ee.netbeans.org/wsdl/VPS/src/VPS"/>
+            </input>
+            <output name="GetLoanSearchResponseExposed">
+                <soap:body use="literal" namespace="http://j2ee.netbeans.org/wsdl/VPS/src/VPS"/>
+            </output>
+        </operation>
+        <operation name="VPSOperation">
+            <soap:operation/>
+            <input name="inputMessage">
+                <soap:body use="literal" namespace="http://j2ee.netbeans.org/wsdl/VPS/src/VPS"/>
+            </input>
+            <output name="outputMessage">
+                <soap:body use="literal" namespace="http://j2ee.netbeans.org/wsdl/VPS/src/VPS"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="VPSService">
+        <port name="VPSPort" binding="tns:VPSBinding">
+            <soap:address location="http://localhost:3434/VPSService/VPSPort"/>
+        </port>
+    </service>
+    <plnk:partnerLinkType name="VPS">
+        <!-- A partner link type is automatically generated when a new port type is added. Partner link types are used by BPEL processes. 
+In a BPEL process, a partner link represents the interaction between the BPEL process and a partner service. Each partner link is associated with a partner link type.
+A partner link type characterizes the conversational relationship between two services. The partner link type can have one or two roles.-->
+        <plnk:role name="VPSPortTypeRole" portType="tns:VPSPortType"/>
+    </plnk:partnerLinkType>
+</definitions>
